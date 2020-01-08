@@ -8,6 +8,8 @@
 #include <thrift/server/TSimpleServer.h>
 #include "gen-cpp/EchoService.h"
 
+#include <unistd.h>
+
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
 using namespace ::apache::thrift::transport;
@@ -21,6 +23,7 @@ class EchoServiceHandler : virtual public EchoServiceIf {
     virtual void Echo(std::string& _return, const std::string& msg)
     {
       _return = msg;
+      sleep(10);
     }
 };
 
