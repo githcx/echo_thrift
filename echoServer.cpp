@@ -20,8 +20,6 @@ using namespace ::echo;
 
 using boost::shared_ptr;
 
-using namespace  ::echo;
-
 int main()
 {
   int thread_num = 5;

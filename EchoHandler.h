@@ -9,6 +9,7 @@
 #include "gen-cpp/EchoService.h"
 
 #include <unistd.h>
+#include <atomic>
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -19,11 +20,14 @@ using namespace ::apache::thrift::concurrency;
 using namespace ::echo;
 
 class EchoServiceHandler : virtual public EchoServiceIf {
+  private:
+    std::atomic<int> cnt;
   public:
-    virtual void Echo(std::string& _return, const std::string& msg)
+    virtual void Echo(std::string& _return, const std::string& msg, const TestReq& test)
     {
+      //if( ++cnt > 5 ){ _return = "qps limit reached"; return; }
       _return = msg;
-      sleep(10);
+      //sleep(10);
     }
 };
 

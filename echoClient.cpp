@@ -22,14 +22,15 @@ int main()
   boost::shared_ptr<TProtocol> protocolClient(new TBinaryProtocol(transportClient));
 
   EchoServiceClient client(protocolClient);
+  TestReq test;
 
   transportClient->open();
 
   string str;
-  client.Echo(str, "hello");
+  client.Echo(str, "hello", test);
   cout << str << endl;
 
-  client.Echo(str, "olleh");
+  client.Echo(str, "olleh", test);
   cout << str << endl;
 
   transportClient->close();
